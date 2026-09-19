@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Horizon Trio — curated products, everyday essentials, and trending finds.">
   <meta name="theme-color" content="#f36a21">
-  <link rel="icon" type="image/png" href="assets/img/logo.jpg">
-  <title>Horizon Trio | Quality Products At Affordable Prices</title>
+  <title>Horizon Trio | Shop Curated Finds</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,33 +57,148 @@
     .search i{position:absolute;left:15px;top:12px;color:#929292}
     .search button{position:absolute;right:7px;top:6px;height:30px;padding:0 12px;border:0;border-radius:8px;background:#191919;color:#fff;font-size:11px;font-weight:700}
 
-    .hero{background:radial-gradient(circle at 85% 20%,rgba(255,157,94,.22),transparent 28%),linear-gradient(180deg,#fffdfb,#fff6ef);padding:58px 0 64px}
-    .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:60px;align-items:center}
-    .eyebrow{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:var(--orange-light);color:var(--deep-orange);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.9px}
-    h1,h2,h3{font-family:"Manrope",sans-serif}
-    .hero h1{font-size:clamp(43px,6vw,67px);line-height:1.04;letter-spacing:-2.4px;margin:18px 0 16px;max-width:670px}
-    .hero h1 span{color:var(--orange)}
-    .hero p{font-size:17px;color:var(--muted);max-width:570px}
-    .hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
-    .btn{min-height:47px;padding:0 18px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:800;transition:.2s}
-    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--orange),var(--deep-orange));box-shadow:0 11px 24px rgba(217,75,11,.19)}
-    .btn-primary:hover{transform:translateY(-2px)}
-    .btn-secondary{background:#fff;border:1px solid #e4dfdb}
-    .btn-secondary:hover{background:#faf8f7}
-    .hero-visual{position:relative;min-height:420px}
-    .hero-card{position:absolute;inset:12px 8px 8px 35px;border-radius:29px;background:linear-gradient(145deg,#ff9c57,#ef661a 55%,#cf4607);overflow:hidden;box-shadow:var(--shadow)}
-    .hero-card:before,.hero-card:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.23);border-radius:50%}
-    .hero-card:before{width:360px;height:360px;right:-120px;top:-100px}.hero-card:after{width:270px;height:270px;left:-120px;bottom:-120px}
-    .store-shape{position:absolute;top:51%;left:50%;transform:translate(-50%,-50%);width:64%;text-align:center}
-    .roof{height:17px;background:#fff;width:88%;margin:auto;border-radius:7px 7px 2px 2px}
-    .store-body{height:175px;width:76%;margin:8px auto 0;background:#fff;border-radius:3px 3px 16px 16px;position:relative}
-    .store-body:before{content:"H";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:800 106px/1 "Manrope";color:var(--orange)}
-    .door{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:55px;height:87px;border:2px solid #f3c4aa;border-bottom:0;border-radius:8px 8px 0 0;background:#fff}
-    .floating{position:absolute;background:rgba(255,255,255,.97);box-shadow:0 15px 30px rgba(66,28,8,.17);border:1px solid rgba(255,255,255,.65);border-radius:16px;padding:13px 15px;display:flex;gap:10px;align-items:center}
-    .floating.a{right:0;top:0}.floating.b{left:0;bottom:0}
-    .float-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--orange-light);color:var(--orange)}
-    .floating strong{display:block;font-size:12px}.floating span{display:block;color:var(--muted);font-size:10px}
 
+    .hero{
+      position:relative;
+      padding:0;
+      background:#f7f7f7;
+      overflow:hidden;
+    }
+    .hero-slider{
+      position:relative;
+      width:100%;
+      height:clamp(380px,43vw,590px);
+      min-height:330px;
+      overflow:hidden;
+    }
+    .hero-track{
+      display:flex;
+      width:500%;
+      height:100%;
+      transition:transform .55s cubic-bezier(.22,.61,.36,1);
+      will-change:transform;
+    }
+    .hero-slide{
+      position:relative;
+      flex:0 0 20%;
+      width:20%;
+      height:100%;
+      overflow:hidden;
+      background:#f2f2f2;
+    }
+    .hero-slide img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
+    .hero-slide:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.22) 42%,rgba(0,0,0,0) 75%);
+      pointer-events:none;
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      height:100%;
+      display:flex;
+      align-items:center;
+    }
+    .hero-copy{
+      max-width:570px;
+      color:#fff;
+      padding:40px 0 65px;
+    }
+    .hero-copy .eyebrow{
+      color:#fff;
+      background:rgba(243,106,33,.93);
+      box-shadow:0 8px 20px rgba(0,0,0,.12);
+    }
+    .hero-copy h1{
+      font-size:clamp(38px,5.2vw,66px);
+      line-height:1.03;
+      letter-spacing:-2.2px;
+      margin:18px 0 15px;
+      font-family:"Manrope",sans-serif;
+    }
+    .hero-copy h1 span{color:#ffb07a}
+    .hero-copy p{
+      max-width:540px;
+      margin:0;
+      color:rgba(255,255,255,.9);
+      font-size:16px;
+    }
+    .hero-copy .hero-buttons{margin-top:26px}
+    .hero-copy .btn-secondary{
+      background:rgba(255,255,255,.95);
+      border:0;
+      color:#222;
+    }
+    .hero-arrow{
+      position:absolute;
+      top:50%;
+      z-index:5;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border:0;
+      border-radius:50%;
+      background:rgba(255,255,255,.94);
+      color:#222;
+      box-shadow:0 8px 20px rgba(0,0,0,.16);
+      display:grid;
+      place-items:center;
+      transition:.2s;
+    }
+    .hero-arrow:hover{
+      background:#fff;
+      color:var(--deep-orange);
+      transform:translateY(-50%) scale(1.04);
+    }
+    .hero-arrow.prev{left:18px}
+    .hero-arrow.next{right:18px}
+    .hero-dots{
+      position:absolute;
+      left:50%;
+      bottom:18px;
+      z-index:6;
+      transform:translateX(-50%);
+      display:flex;
+      gap:7px;
+      padding:6px 9px;
+      border-radius:999px;
+      background:rgba(0,0,0,.26);
+      backdrop-filter:blur(4px);
+    }
+    .hero-dot{
+      width:8px;
+      height:8px;
+      border:0;
+      padding:0;
+      border-radius:50%;
+      background:rgba(255,255,255,.55);
+      transition:.2s;
+    }
+    .hero-dot.active{
+      width:25px;
+      border-radius:9px;
+      background:#fff;
+    }
+    .hero-progress{
+      position:absolute;
+      left:0;
+      bottom:0;
+      z-index:7;
+      height:3px;
+      width:20%;
+      background:var(--orange);
+      transition:width .1s linear;
+    }
     section{padding:82px 0}.section-head{text-align:center;max-width:710px;margin:0 auto 40px}
     .section-head h2{font-size:clamp(31px,4vw,45px);line-height:1.12;letter-spacing:-1.3px;margin:11px 0}
     .section-head p{color:var(--muted);margin:0}
@@ -169,7 +283,7 @@
       .desktop-nav.open{display:flex}.desktop-nav>a,.drop-trigger{padding:12px 0;border-bottom:1px solid #f1eeee}.nav-item{width:100%}.dropdown{position:static;box-shadow:none;border:0;border-radius:0;padding:0 0 7px}.nav-item:hover .dropdown{display:none}.nav-item.show .dropdown{display:block}.mobile-toggle{display:block}.nav-inner{min-height:68px}.desktop-nav{top:68px}.hero-grid,.about-grid,.promo-grid{grid-template-columns:1fr}.hero-visual{max-width:630px;margin:0 auto;width:100%}.category-grid{grid-template-columns:repeat(2,1fr)}.newsletter-inner{flex-direction:column;align-items:flex-start}.subscribe{width:100%}
     }
     @media(max-width:600px){
-      .container{width:calc(100% - 28px)}.search-wrap{padding:9px 0}.hero{padding:43px 0 35px}.hero h1{font-size:45px;letter-spacing:-1.8px}.hero p{font-size:15px}.hero-visual{min-height:350px}.hero-card{inset:20px 0 18px 10px}.floating.a{right:-1px}.floating.b{left:-1px}.category-grid,.product-grid{grid-template-columns:1fr 1fr;gap:12px}.product-image{height:170px}.product-icon{width:82px;height:82px;font-size:31px}.product-info{padding:12px}.product h3{font-size:14px}.add-btn{padding:0 8px}.shop-toolbar{align-items:flex-start;flex-direction:column}.sort{width:100%;justify-content:space-between}.about-copy h2{font-size:33px}.promo-card{min-height:225px;padding:25px}.promo-card h3{font-size:24px}.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}.tool-btn.search-hide{display:none}
+      .container{width:calc(100% - 28px)}.hero-slider{height:clamp(330px,78vw,470px)}.search-wrap{padding:9px 0}.hero{padding:43px 0 35px}.hero h1{font-size:45px;letter-spacing:-1.8px}.hero p{font-size:15px}.hero-visual{min-height:350px}.hero-card{inset:20px 0 18px 10px}.floating.a{right:-1px}.floating.b{left:-1px}.category-grid,.product-grid{grid-template-columns:1fr 1fr;gap:12px}.product-image{height:170px}.product-icon{width:82px;height:82px;font-size:31px}.product-info{padding:12px}.product h3{font-size:14px}.add-btn{padding:0 8px}.shop-toolbar{align-items:flex-start;flex-direction:column}.sort{width:100%;justify-content:space-between}.about-copy h2{font-size:33px}.promo-card{min-height:225px;padding:25px}.promo-card h3{font-size:24px}.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}.tool-btn.search-hide{display:none}
     }
     @media(max-width:420px){
       .nav-actions .tool-btn:nth-child(2){display:none}.category-grid{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr}.product-image{height:220px}.subscribe{flex-direction:column}.subscribe input,.subscribe button{width:100%}.subscribe button{height:44px}
@@ -263,33 +377,101 @@
 
   <main>
     <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> Welcome to Horizon Trio</div>
-          <h1>Discover more. <span>Shop smarter.</span></h1>
-          <p>Curated products, practical essentials, and interesting finds — brought together in one clean and convenient shopping experience.</p>
-          <div class="hero-buttons">
-            <a class="btn btn-primary" href="#products">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
-            <a class="btn btn-secondary" href="#featured">View Best Sellers</a>
-          </div>
+      <div class="hero-slider" id="heroSlider" aria-label="Horizon Trio featured banners">
+        <div class="hero-track" id="heroTrack">
+
+          <article class="hero-slide">
+            <img src="assets/img/banner-1.jpg" alt="Horizon Trio featured products" loading="eager">
+            <div class="container hero-content">
+              <div class="hero-copy">
+                <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> Horizon Trio</div>
+                <h1>Discover more. <span>Shop smarter.</span></h1>
+                <p>Explore curated products, everyday essentials, and fresh finds selected for a better shopping experience.</p>
+                <div class="hero-buttons">
+                  <a class="btn btn-primary" href="#products">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+                  <a class="btn btn-secondary" href="#collections">Explore Collections</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide">
+            <img src="assets/img/banner-2.jpg" alt="Horizon Trio new arrivals" loading="lazy">
+            <div class="container hero-content">
+              <div class="hero-copy">
+                <div class="eyebrow"><i class="fa-solid fa-bolt"></i> New Arrivals</div>
+                <h1>Fresh finds for <span>your everyday.</span></h1>
+                <p>Discover new products and useful additions arriving across the Horizon Trio store.</p>
+                <div class="hero-buttons">
+                  <a class="btn btn-primary" href="#products">View New Arrivals <i class="fa-solid fa-arrow-right"></i></a>
+                  <a class="btn btn-secondary" href="#featured">Best Sellers</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide">
+            <img src="assets/img/banner-3.jpg" alt="Horizon Trio trending products" loading="lazy">
+            <div class="container hero-content">
+              <div class="hero-copy">
+                <div class="eyebrow"><i class="fa-solid fa-fire"></i> Trending Now</div>
+                <h1>What’s trending on <span>your horizon?</span></h1>
+                <p>Bring popular products and seasonal discoveries to the front of your storefront.</p>
+                <div class="hero-buttons">
+                  <a class="btn btn-primary" href="#products" data-filter="trending">Shop Trending <i class="fa-solid fa-arrow-right"></i></a>
+                  <a class="btn btn-secondary" href="#about">Our Story</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide">
+            <img src="assets/img/banner-4.jpg" alt="Horizon Trio home and lifestyle collection" loading="lazy">
+            <div class="container hero-content">
+              <div class="hero-copy">
+                <div class="eyebrow"><i class="fa-solid fa-house"></i> Home & Lifestyle</div>
+                <h1>Simple upgrades for <span>modern living.</span></h1>
+                <p>Explore practical and stylish picks for home, workspaces, travel, and everyday life.</p>
+                <div class="hero-buttons">
+                  <a class="btn btn-primary" href="#products" data-filter="home">Shop Home & Lifestyle <i class="fa-solid fa-arrow-right"></i></a>
+                  <a class="btn btn-secondary" href="#collections">Browse Collections</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide">
+            <img src="assets/img/banner-5.jpg" alt="Horizon Trio everyday essentials" loading="lazy">
+            <div class="container hero-content">
+              <div class="hero-copy">
+                <div class="eyebrow"><i class="fa-solid fa-bag-shopping"></i> Everyday Essentials</div>
+                <h1>Useful products, <span>better shopping.</span></h1>
+                <p>Find practical products that fit naturally into your daily routine — all in one place.</p>
+                <div class="hero-buttons">
+                  <a class="btn btn-primary" href="#products" data-filter="everyday">Shop Essentials <i class="fa-solid fa-arrow-right"></i></a>
+                  <a class="btn btn-secondary" href="#contact">Contact Us</a>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
 
-        <div class="hero-visual">
-          <div class="hero-card">
-            <div class="store-shape">
-              <div class="roof"></div>
-              <div class="store-body"><div class="door"></div></div>
-            </div>
-          </div>
-          <div class="floating a">
-            <div class="float-icon"><i class="fa-solid fa-heart"></i></div>
-            <div><strong>Curated picks</strong><span>Selected with purpose</span></div>
-          </div>
-          <div class="floating b">
-            <div class="float-icon"><i class="fa-solid fa-truck-fast"></i></div>
-            <div><strong>Easy shopping</strong><span>Simple from cart to checkout</span></div>
-          </div>
+        <button class="hero-arrow prev" id="heroPrev" aria-label="Previous banner">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="hero-arrow next" id="heroNext" aria-label="Next banner">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div class="hero-dots" id="heroDots" aria-label="Banner navigation">
+          <button class="hero-dot active" aria-label="Show banner 1"></button>
+          <button class="hero-dot" aria-label="Show banner 2"></button>
+          <button class="hero-dot" aria-label="Show banner 3"></button>
+          <button class="hero-dot" aria-label="Show banner 4"></button>
+          <button class="hero-dot" aria-label="Show banner 5"></button>
         </div>
+
+        <div class="hero-progress" id="heroProgress"></div>
       </div>
     </section>
 
@@ -663,6 +845,71 @@
     });
 
     document.getElementById('subscribeForm').addEventListener('submit',e=>{e.preventDefault();showToast('Thanks for subscribing!');e.target.reset()});
+
+
+    /* Five-image hero banner carousel */
+    const heroSlider = document.getElementById('heroSlider');
+    const heroTrack = document.getElementById('heroTrack');
+    const heroDots = [...document.querySelectorAll('.hero-dot')];
+    const heroProgress = document.getElementById('heroProgress');
+    const HERO_COUNT = 5;
+    const HERO_INTERVAL = 6000;
+    let heroIndex = 0;
+    let heroTimer = null;
+    let heroProgressTimer = null;
+
+    function updateHero(index, restart = true){
+      heroIndex = (index + HERO_COUNT) % HERO_COUNT;
+      heroTrack.style.transform = `translateX(-${heroIndex * 20}%)`;
+      heroDots.forEach((dot,i)=>dot.classList.toggle('active', i === heroIndex));
+      if(restart) startHeroAutoplay();
+    }
+
+    function resetHeroProgress(){
+      heroProgress.style.transition='none';
+      heroProgress.style.width='0%';
+      requestAnimationFrame(()=>{
+        requestAnimationFrame(()=>{
+          heroProgress.style.transition=`width ${HERO_INTERVAL}ms linear`;
+          heroProgress.style.width='20%';
+        });
+      });
+    }
+
+    function startHeroAutoplay(){
+      clearInterval(heroTimer);
+      clearInterval(heroProgressTimer);
+      resetHeroProgress();
+      heroTimer = setInterval(()=>updateHero(heroIndex + 1, false), HERO_INTERVAL);
+      heroProgressTimer = setInterval(resetHeroProgress, HERO_INTERVAL);
+    }
+
+    document.getElementById('heroPrev').addEventListener('click',()=>updateHero(heroIndex - 1));
+    document.getElementById('heroNext').addEventListener('click',()=>updateHero(heroIndex + 1));
+    heroDots.forEach((dot,i)=>dot.addEventListener('click',()=>updateHero(i)));
+
+    let heroTouchStartX = 0;
+    let heroTouchStartY = 0;
+
+    heroSlider.addEventListener('touchstart', e=>{
+      heroTouchStartX=e.changedTouches[0].clientX;
+      heroTouchStartY=e.changedTouches[0].clientY;
+      clearInterval(heroTimer);
+    }, {passive:true});
+
+    heroSlider.addEventListener('touchend', e=>{
+      const dx=e.changedTouches[0].clientX-heroTouchStartX;
+      const dy=e.changedTouches[0].clientY-heroTouchStartY;
+      if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)){
+        updateHero(heroIndex + (dx<0 ? 1 : -1));
+      }else{
+        startHeroAutoplay();
+      }
+    }, {passive:true});
+
+    heroSlider.addEventListener('mouseenter',()=>clearInterval(heroTimer));
+    heroSlider.addEventListener('mouseleave',()=>startHeroAutoplay());
+    startHeroAutoplay();
 
     const mobileToggle=document.querySelector('.mobile-toggle');
     const nav=document.querySelector('.desktop-nav');
