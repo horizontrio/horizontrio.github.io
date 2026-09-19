@@ -1,585 +1,952 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<!-- Google tag (gtag.js) --> 
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QDWSE5KD9J">
-	</script> 
-	<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-QDWSE5KD9J'); 
-	</script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-	<link rel="icon" type="image/png" href="assets/img/logo.jpg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Horizon Trio — a modern ecommerce destination for thoughtfully selected products and everyday essentials.">
+  <meta name="theme-color" content="#f36a21">
+  <title>Horizon Trio | Ecommerce & Everyday Essentials</title>
 
-    <title>Reffat Ahmed - Personal Portfolio</title>
-	<script src="https://kit.fontawesome.com/7512d329b6.js" crossorigin="anonymous"></script>
-    <!--GOOGLE FONT -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans|Roboto|Lato|Orbitron' rel='stylesheet' type='text/css'>
-    <!--BOOTSTRAP MAIN STYLES -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!--FONTAWESOME MAIN STYLE -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-    <!--CUSTOM STYLE -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #f36a21;
+      --deep-orange: #d94b0b;
+      --orange-light: #fff2e9;
+      --ink: #171717;
+      --muted: #6b7280;
+      --line: #ececec;
+      --white: #ffffff;
+      --soft: #fffaf7;
+      --shadow: 0 18px 50px rgba(72, 33, 10, .10);
+      --radius: 22px;
+    }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--white);
+      font-family: "DM Sans", Arial, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1140px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: #191919;
+      color: #fff;
+      font-size: 13px;
+      padding: 8px 0;
+      text-align: center;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      position: relative;
+      border-radius: 11px 11px 9px 9px;
+      background: linear-gradient(145deg, #ff9b51, var(--orange), var(--deep-orange));
+      box-shadow: 0 9px 20px rgba(243,106,33,.25);
+      overflow: hidden;
+    }
+
+    .brand-mark:before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 15px;
+      width: 26px;
+      height: 19px;
+      border: 3px solid #fff;
+      border-top: 0;
+      border-radius: 1px 1px 5px 5px;
+    }
+
+    .brand-mark:after {
+      content: "H";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 3px;
+      color: #fff;
+      text-align: center;
+      font: 800 18px/1.2 "Manrope", sans-serif;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: #484848;
+      font-size: 14px;
+      font-weight: 600;
+      transition: .2s ease;
+    }
+
+    .nav-links a:hover { color: var(--orange); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #404040;
+      background: #fff;
+    }
+
+    .mobile-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      font-size: 22px;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 78px 0 70px;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(255, 158, 95, .25), transparent 29%),
+        radial-gradient(circle at 14% 76%, rgba(243, 106, 33, .09), transparent 30%),
+        linear-gradient(180deg, #fffdfb 0%, #fff8f3 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: var(--orange-light);
+      color: var(--deep-orange);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero h1 {
+      margin: 20px 0 16px;
+      max-width: 680px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(44px, 6vw, 72px);
+      line-height: 1.04;
+      letter-spacing: -2.5px;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero-copy {
+      max-width: 580px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 49px;
+      padding: 0 20px;
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--orange), var(--deep-orange));
+      color: #fff;
+      box-shadow: 0 11px 25px rgba(217, 75, 11, .22);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary {
+      background: #fff;
+      border: 1px solid #e3e3e3;
+      color: #252525;
+    }
+    .btn-secondary:hover { background: #f9f9f9; }
+
+    .hero-visual {
+      position: relative;
+      min-height: 470px;
+    }
+
+    .visual-main {
+      position: absolute;
+      inset: 25px 10px 10px 35px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, #ff9e58, #ee6317 56%, #cb4608);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .visual-main:before,
+    .visual-main:after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.24);
+    }
+    .visual-main:before { width: 360px; height: 360px; right: -110px; top: -80px; }
+    .visual-main:after { width: 250px; height: 250px; left: -110px; bottom: -100px; }
+
+    .shop-illustration {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      width: 72%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
+    }
+
+    .shop-roof {
+      width: 84%;
+      height: 18px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 7px 7px 2px 2px;
+    }
+
+    .shop-body {
+      width: 74%;
+      height: 175px;
+      margin: 8px auto 0;
+      background: rgba(255,255,255,.96);
+      border-radius: 3px 3px 17px 17px;
+      position: relative;
+    }
+
+    .shop-body:before {
+      content: "H";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      color: var(--orange);
+      font: 800 104px/1 "Manrope", sans-serif;
+      opacity: .96;
+    }
+
+    .shop-door {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 55px;
+      height: 86px;
+      background: #fff;
+      border: 2px solid #f4cdb8;
+      border-bottom: 0;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .floating-card {
+      position: absolute;
+      background: rgba(255,255,255,.97);
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 15px 35px rgba(77, 34, 10, .18);
+      border-radius: 18px;
+      padding: 15px 17px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .floating-card.top { top: 8px; right: 0; }
+    .floating-card.bottom { bottom: 0; left: 0; }
+
+    .float-icon {
+      width: 40px; height: 40px;
+      display: grid; place-items: center;
+      border-radius: 12px;
+      background: var(--orange-light);
+      color: var(--orange);
+      font-size: 17px;
+    }
+
+    .floating-card strong { display:block; font-size: 13px; }
+    .floating-card span { display:block; color: var(--muted); font-size: 12px; }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 730px;
+      margin: 0 auto 48px;
+    }
+
+    .section-head h2 {
+      margin: 12px 0 12px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.12;
+      letter-spacing: -1.4px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .category-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 250px;
+      padding: 28px;
+      border-radius: var(--radius);
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 24px rgba(0,0,0,.03);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .category-art {
+      width: 75px;
+      height: 75px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #fff0e6, #fff9f5);
+      color: var(--orange);
+      font-size: 31px;
+      margin-bottom: 42px;
+    }
+
+    .category-card h3 {
+      margin: 0 0 5px;
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+    }
+
+    .category-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .category-card a {
+      position: absolute;
+      right: 25px;
+      bottom: 25px;
+      color: var(--deep-orange);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .about {
+      background: #fff9f5;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-panel {
+      border-radius: 30px;
+      min-height: 370px;
+      padding: 38px;
+      background: linear-gradient(145deg, #fff, #ffeadd);
+      border: 1px solid #f5dfd1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-panel:after {
+      content: "HT";
+      position: absolute;
+      right: -14px;
+      bottom: -38px;
+      color: rgba(243,106,33,.08);
+      font: 800 170px/1 "Manrope", sans-serif;
+    }
+
+    .about-panel .mini-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #ff9b51, var(--deep-orange));
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font: 800 37px/1 "Manrope", sans-serif;
+      box-shadow: 0 13px 30px rgba(217,75,11,.24);
+    }
+
+    .about-panel h3 {
+      margin: 27px 0 9px;
+      font: 800 29px/1.15 "Manrope", sans-serif;
+    }
+
+    .about-panel p { color: var(--muted); max-width: 380px; }
+
+    .about-copy h2 {
+      margin: 0 0 17px;
+      font: 800 44px/1.1 "Manrope", sans-serif;
+      letter-spacing: -1.5px;
+    }
+
+    .about-copy > p { color: var(--muted); }
+
+    .feature-list {
+      display: grid;
+      gap: 14px;
+      margin: 28px 0 0;
+    }
+
+    .feature {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .feature i {
+      flex: 0 0 auto;
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--orange-light);
+      color: var(--orange);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .feature strong { display: block; font-size: 14px; }
+    .feature span { display: block; color: var(--muted); font-size: 13px; }
+
+    .trust {
+      padding: 25px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      text-align: center;
+    }
+
+    .trust-item strong {
+      display: block;
+      font: 800 26px/1.1 "Manrope", sans-serif;
+      color: var(--deep-orange);
+    }
+    .trust-item span { color: var(--muted); font-size: 12px; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .why-card {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .why-card i {
+      color: var(--orange);
+      font-size: 24px;
+      margin-bottom: 23px;
+    }
+    .why-card h3 {
+      margin: 0 0 8px;
+      font: 800 19px/1.3 "Manrope", sans-serif;
+    }
+    .why-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .cta {
+      padding: 0 0 90px;
+    }
+
+    .cta-box {
+      border-radius: 30px;
+      padding: 55px 60px;
+      color: #fff;
+      background: linear-gradient(135deg, #f8782f, #d94b0b);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+      box-shadow: 0 25px 55px rgba(217,75,11,.20);
+    }
+
+    .cta-box h2 {
+      margin: 0 0 9px;
+      font: 800 39px/1.1 "Manrope", sans-serif;
+      letter-spacing: -1px;
+    }
+
+    .cta-box p { margin: 0; color: rgba(255,255,255,.84); max-width: 650px; }
+    .cta .btn-secondary { background: #fff; border: 0; color: var(--deep-orange); white-space: nowrap; }
+
+    .contact {
+      background: #191919;
+      color: #fff;
+      padding: 78px 0 35px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 70px;
+      padding-bottom: 55px;
+    }
+
+    .contact h2 {
+      margin: 0 0 13px;
+      font: 800 40px/1.1 "Manrope", sans-serif;
+    }
+
+    .contact p { color: #a7a7a7; max-width: 560px; }
+
+    .contact-links {
+      display: grid;
+      gap: 13px;
+      margin-top: 26px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #dedede;
+      font-size: 14px;
+    }
+    .contact-link i {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      color: #ff944f;
+      background: #2a2a2a;
+    }
+
+    .footer-box {
+      padding-top: 20px;
+      border-top: 1px solid #303030;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #8d8d8d;
+      font-size: 12px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 12px;
+    }
+    .socials a {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #272727;
+      color: #cfcfcf;
+    }
+    .socials a:hover { color: #fff; background: var(--deep-orange); }
+
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 55px; }
+      .hero-visual { max-width: 620px; width: 100%; margin: 0 auto; }
+      .category-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+      .nav-links {
+        position: absolute;
+        left: 0; right: 0; top: 76px;
+        display: none;
+        padding: 14px 20px 20px;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 14px 30px rgba(0,0,0,.08);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+      .nav-links a:last-child { border-bottom: 0; }
+      .mobile-toggle { display: block; }
+      .nav-actions { margin-left: auto; }
+    }
+
+    @media (max-width: 620px) {
+      .container { width: min(100% - 28px, 1140px); }
+      .nav-inner { min-height: 68px; }
+      .nav-links { top: 68px; }
+      .hero { padding: 45px 0 30px; }
+      .hero h1 { letter-spacing: -1.8px; font-size: 46px; }
+      .hero-copy { font-size: 16px; }
+      .hero-visual { min-height: 380px; }
+      .visual-main { inset: 25px 0 20px 12px; }
+      .floating-card.top { right: -1px; }
+      .floating-card.bottom { left: -2px; }
+      .category-grid, .why-grid { grid-template-columns: 1fr; }
+      section { padding: 68px 0; }
+      .about-copy h2, .contact h2 { font-size: 34px; }
+      .cta { padding-bottom: 68px; }
+      .cta-box { padding: 34px 28px; flex-direction: column; align-items: flex-start; }
+      .cta-box h2 { font-size: 31px; }
+      .footer-box { flex-direction: column; }
+    }
+  </style>
 </head>
 
-	
 <body>
+  <div class="topbar">Curated products. Simple shopping. A better everyday experience.</div>
 
-    <!-- NAV SECTION -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Reffat Ahmed</a>
-            </div>
-            <div class="navbar-collapse collapse">
-			
-                <ul class="nav navbar-nav navbar-right">
-                    <!--<li><a href="#header-section">HOME</a></li>-->
-                    <li><a href="#about-section">ABOUT</a></li>
-                    <!--<li><a href="#wexp-section">EXPERIENCE</a></li>-->
-                    <li><a href="#education-section">EDUCATION</a></li>
-                    <li><a href="#project-section">RESEARCH & PROJECTS</a></li>
-                    <li><a href="#award-section">SKILLS & OTHERS</a></li>
-                    <!--<li><a href="#contact-section">OTHERS</a></li>-->
-                   
-                </ul>
-				
-            </div>
-           
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Horizon Trio home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Horizon Trio</span>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Open navigation" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#collections">Collections</a>
+        <a href="#about">About</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="icon-btn" href="#contact" aria-label="Contact Horizon Trio"><i class="fa-regular fa-envelope"></i></a>
+        <a class="icon-btn" href="#collections" aria-label="Browse collections"><i class="fa-solid fa-bag-shopping"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> Welcome to Horizon Trio</div>
+          <h1>Discover more. <span>Shop smarter.</span></h1>
+          <p class="hero-copy">
+            Horizon Trio is an ecommerce brand focused on bringing thoughtfully selected products together in one simple, trusted shopping experience.
+          </p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#collections">Explore Collections <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="btn btn-secondary" href="#about">Learn About Us</a>
+          </div>
         </div>
-    </div>
-    <!--END NAV SECTION -->
-    
 
-	<!--ABOUT SECTION-->
-    <div id="about-section" >
-    <div class="container" >
-    <!-- ./ Main Heading-->
-    <div class="row main-low-margin text-center">
-		
-		<div class="col-md-3 text-center" data-scrollreveal="enter left and move 100px, wait 0.4s">
-			<div class="profile-container">
-    			<img class="img-circle img-responsive mx-auto" src="assets/img/refat.jpg" alt="Reffat Ahmed" style="width:250px; height:auto;">
-				</div>
-    			<h4><strong>Reffat Ahmed</strong></h4>
-                <p>
-        			Email: rifatahmed034@gmail.com
-    			</p>
-    			<p>  
-        		<!-- <a href="https://bd.linkedin.com/in/" target="_blank"><i class="fa fa-linkedin-square fa-2x color-linkedin"></i><--/a> -->		
-				<a href="https://scholar.google.com/citations?user=yeNb3Q8AAAAJ&hl=en" target="_blank"><i class="fa-brands fa-google-scholar fa-2x"></i></a>
-				<a href="https://github.com/Rifat094" target="_blank"><i class="fa-brands fa-square-github fa-2x"></i></i></a>
-        		<a href="https://www.kaggle.com/refat094" target="_blank"><i class="fa-brands fa-kaggle fa-2x"></i></a>
-				<a href="https://www.linkedin.com/in/reffat-ahmed-961a85148/"><i class="fa-brands fa-linkedin fa-2x"></i></a>
-					
-    			</p>
-			    <a href="https://drive.google.com/drive/folders/1UqvxPj4-ILCGlEmTeFkW2YjieMTSF1tn?usp=sharing" download class="cv-btn"><i class="fa fa-download"></i> Download CV</a>
-		</div>
+        <div class="hero-visual" aria-label="Horizon Trio store illustration">
+          <div class="visual-main">
+            <div class="shop-illustration">
+              <div class="shop-roof"></div>
+              <div class="shop-body">
+                <div class="shop-door"></div>
+              </div>
+            </div>
+          </div>
 
+          <div class="floating-card top">
+            <div class="float-icon"><i class="fa-solid fa-heart"></i></div>
+            <div>
+              <strong>Carefully selected</strong>
+              <span>Products chosen with purpose</span>
+            </div>
+          </div>
 
-
-             
-                <div class="col-md-7 col-sm-7 col-md-offset-1  text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-                    <h3>About Myself</h3>
-                    <p>
-                        I am a Computer Science postgraduate student at BUET, specializing in Machine Learning, Deep Learning, NLP, Generative AI, and Large Language Model systems.
-                    </p>
-			
+          <div class="floating-card bottom">
+            <div class="float-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div>
+              <strong>Easy shopping</strong>
+              <span>From discovery to delivery</span>
+            </div>
+          </div>
         </div>
-    </div>
-	</div>
-    </div>
-    <!-- END ABOUT SECTION -->
+      </div>
+    </section>
 
-    
-
-
-    <!--EDUCATION SECTION -->
-    <div id="education-section" >
-        <div class="container" >
-            <div class="row main-top-margin text-center" data-scrollreveal="enter top and move 100px, wait 0.3s">
-                <div class="col-md-8 col-md-offset-2 ">
-                    <h1>Education</h1>
-
-                </div>
-            </div>
-             <!-- ./ Main Heading-->
-            <hr />
-
-            <div class="row main-low-margin" >
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.8s">
-                        <img src="assets/img/buet-logo.png" width="150" height="150" alt="">
-                    </div>
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <h4 >  <strong class="color-blue">Bangladesh University of Engineering and Technology</strong></h4>
-                        <p>
-                            M.Sc. in Computer Science and Engineering | 2023 -
-                        </p>
-
-                        <!-- <p>
-                            <b>Key Courses:</b> Management of Organizations, Managerial Communication, Quantitative Analysis for Business Decisions, Managing Operations and Supply Chain, Legal Environment of Business, Financial Accounting, Management Information Systems, Managerial Economics, Managerial Accounting, Marketing Theory and Practice, Managing People at Work, Financial Theory and Practice, Research Methods, Business Analytics, Corporate Finance, Investment Analysis and Portfolio Management, International Financial Management, Financial Statement Analysis and Valuation, Financial Derivatives, Strategic Management. 
-                        </p> -->
-
-                    </div>
-                </div>  
-            </div>
-
-
-            <hr />
-           
-            <div class="row main-low-margin" >
-
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.8s">
-                        <img src="assets/img/kuet-logo.png" width="150" height="150" alt="">
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <h4 >  <strong class="color-blue">Khulna University of Engineering & Technology</strong></h4>
-                        <p>
-                            B.Sc. in Computer Science and Engineering | 2016 - 2020
-                        </p>
-
-                        <!-- <p>
-                            <b>Key Courses:</b> Computer Basics and Programming, Discrete Mathematics, Structured Programming, Digital Logic Design, Object Oriented Programming, Computer Architecture, Data Structures, Algorithm Analysis & Design, Database Systems, Software Engineering, Operating Systems, Compiler Design, Computer Networks, Computer and Network Security, Data Mining, Artificial Intelligence, Machine Learning, Computer Graphics, Biomedical Engineering, Digital System Design. 
-                        </p> -->
-
-                    </div>
-
-                    
-                </div>
-            </div>
-
-			<hr />
-           
-            <div class="row main-low-margin" >
-
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.8s">
-                        <img src="assets/img/dcc-logo.png" width="150" height="150" alt="">
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <h4 >  <strong class="color-blue">Dhaka City College</strong></h4>
-                        <p>
-                            Higher Secondary Certificate | 2015
-                        </p>
-
-                        <!--<p>
-                            <b>Key Courses:</b> Computer Basics and Programming, Discrete Mathematics, Structured Programming, Digital Logic Design, Object Oriented Programming, Computer Architecture, Data Structures, Algorithm Analysis & Design, Database Systems, Software Engineering, Operating Systems, Compiler Design, Computer Networks, Computer and Network Security, Data Mining, Artificial Intelligence, Machine Learning, Computer Graphics, Biomedical Engineering, Digital System Design. 
-                        </p> -->
-
-                    </div>
-
-                    
-                </div>
-            </div>
-
-
-			<hr />
-           
-            <div class="row main-low-margin" >
-
-                <div class="col-md-10  col-md-offset-1 ">
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.8s">
-                        <img src="assets/img/dgbhs-logo.png" width="150" height="150" alt="">
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <h4 >  <strong class="color-blue">Dhanmondi Govt. Boys’ High School</strong></h4>
-                        <p>
-                            Secondary School Certificate | 2013
-                        </p>
-
-                        <!--<p>
-                            <b>Key Courses:</b> Computer Basics and Programming, Discrete Mathematics, Structured Programming, Digital Logic Design, Object Oriented Programming, Computer Architecture, Data Structures, Algorithm Analysis & Design, Database Systems, Software Engineering, Operating Systems, Compiler Design, Computer Networks, Computer and Network Security, Data Mining, Artificial Intelligence, Machine Learning, Computer Graphics, Biomedical Engineering, Digital System Design. 
-                        </p> -->
-
-                    </div>
-
-                    
-                </div>
-            </div>
-			
-			<hr />
-
-			
-              <!-- ./ Row Content-->
+    <section id="collections">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Explore</div>
+          <h2>Find something that fits your horizon.</h2>
+          <p>
+            A flexible storefront for curated finds, practical everyday items, and products worth discovering.
+          </p>
         </div>
-    </div>
-    <!--END EDUCATION SECTION -->
 
+        <div class="category-grid">
+          <article class="category-card">
+            <div class="category-art"><i class="fa-solid fa-bag-shopping"></i></div>
+            <h3>Everyday Essentials</h3>
+            <p>Useful products selected to make daily routines easier.</p>
+            <a href="#contact">Explore <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
 
+          <article class="category-card">
+            <div class="category-art"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3>Trending Finds</h3>
+            <p>Fresh, interesting products discovered from changing trends.</p>
+            <a href="#contact">Explore <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
 
-
-
-
-<!--PROJECT SECTION -->
-    <div id="project-section" >
-        <div class="container" >
-            <div class="row main-top-margin text-center" data-scrollreveal="enter top and move 100px, wait 0.3s">
-                <div class="col-md-8 col-md-offset-2 ">
-                    <h1>Research & Projects</h1>
-                </div>
-            </div>
-             <!-- ./ Main Heading-->
-            <hr />
-
-            <div class="row main-low-margin" >
-                <div class="col-md-10  col-md-offset-1 ">
-
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.2s">
-                        <h2 >  <strong class="color-blue">Area<br/>of<br/>Interest</strong></h2>
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <p>
-                            <p><i class="fa fa-check"></i> Artificial Intelligence</p>
-                            <p><i class="fa fa-check"></i> Machine learning</p>
-                            <p><i class="fa fa-check"></i> Natural Language Processing</p>
-                            <p><i class="fa fa-check"></i> Computer Vision</p>
-			                <p><i class="fa fa-check"></i> Generative AI</p>
-                        </p>    
-                    </div>  
-                </div>   
-            </div>
-            <!-- ./ Row Content-->
-
-            <hr />
-
-<!--Publication-->
-		
-	    <div class="row main-low-margin" >
-                <div class="col-md-10  col-md-offset-1 ">
-
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.2s">
-                        <h2 >  <strong class="color-blue">Publication</strong></h2>
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-
-												<p>
-                            R. Ahmed, S. Parvej, R. Shahriyar, M. A. Habib, F. Ashab, H. M. A. Fattah and K. S. Alam. <a href="#" target="_blank">A Comparative Analysis of Evolutionary Algorithms for Hyperparameter Optimization.</a> <i>in Proceedings of the 28th International Conference on Computer and Information Technology (ICCIT), Cox’s Bazar, Bangladesh, 2025</i>
-                        </p>
-			<hr/>
-	
-			<p>
-                            R. Ahmed, S. Parvej, R. Shahriyar and A. Rahman. <a href="https://www.researchgate.net/publication/395978791_Accelerating_Chatbot_Inference_with_vLLM_Evaluating_the_Efficiency_of_PagedAttention" target="_blank">Accelerating Chatbot Inference with vLLM: Evaluating the Efficiency of PagedAttention.</a> <i>in Proceedings of the 1st International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN), Rangpur, Bangladesh, 2025</i> pp. 1-6, doi: 10.1109/QPAIN66474.2025.11171881.
-                        </p>
-			    
-			<hr/>
-
-			    
-
-                    </div>  
-                </div>   
-            </div>
-            <!-- ./ Row Content-->
-
-            <hr />
-
-
-
-<!--Ongoing Research, Comparative Study on Parkinson Disease Classification		
-
-            <div class="row main-low-margin" >
-                <div class="col-md-10  col-md-offset-1 ">
-
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.2s">
-                        <h2 >  <strong class="color-blue">Ongoing Research</strong></h2>
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-
-			<h4 >  <strong class="color-red">Identification of Potential Biomarkers for Ankylosing Spondylitis</strong></h4>
-                        <p>
-                            Python 
-                        </p>
-                        <p>
-                            A bioinformatics study focused on identifying key biomarkers for Ankylosing Spondylitis (AS). Through extensive data analysis and literature reviews, the research aims to identify potential biomarkers crucial for early diagnosis and effective management of AS.
-                        </p>
-
-
-			<hr/>
-
-			<h4 >  <strong class="color-red">Recent Advances in Large Language Models: A Review of Methods, Applications and Future Directions.</strong></h4>
-                        <p>
-                            Python 
-                        </p>
-                        <p>
-                            A comprehensive review paper exploring state-of-the-art methods, diverse applications, and emerging trends in large language models, highlighting their potential and addressing key challenges for future research and development.
-                        </p>
-
-                        <hr/> 
-
-                        <h4 >  <strong class="color-red">Protein Secondary Structure Prediction using Advanced Machine Learning Approaches</strong></h4>
-                        <p>
-                            Python 
-                        </p>
-                        <p>
-                            Leveraging advanced Machine Learning techniques, this research focuses on predicting protein secondary structures. By analyzing protein sequences with advanced ML algorithms and models, we aim to enhance accuracy and reliability in protein structure prediction for bioinformatics applications.
-                        </p>
-
-			<hr/>
-
-                        
-
-                        <h4 >  <strong class="color-red">Early Diagnosis of Alzheimer's Disease: A Multimodal Approach with Gradient Boosting for MRI and Attention-Based Models for PET Data</strong></h4>
-                        <p>
-                            Python 
-                        </p>
-                        <p>
-                            This study focuses on early Alzheimer's Disease detection using both MRI and PET data. Employing Gradient Boosting for MRI-derived structural volumes and attention-based models for PET images, we identify key features from each dataset using metaheuristic algorithms. By combining these outputs with Ensemble Methods, we enhance the accuracy of early AD diagnosis.
-                        </p>
-                    </div>  
-                </div>   
-            </div>
-
-            <hr />
--->
-
-<!--Projects-->	
-            
-            <div class="row main-low-margin bottam-pad" >
-
-                <div class="col-md-10  col-md-offset-1 ">
-
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.2s">
-                        <h2 >  <strong class="color-blue">Projects</strong></h2>
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-						
-                        <h4 ><a href="https://www.youtube.com/watch?v=1pQz0_l0wH0"><strong class="color-blue"> Happy Zone BD</strong></a></h4>
-                        <p>
-                            Laravel, MySQL, JavaScript 
-                        </p>
-                        <p>
-                            Developed a full-stack e-commerce platform with user authentication, payment integration, and product search 
-                        </p>
-
-                        <hr/>
-
-                        <h4 ><a href="https://github.com/Rifat094/Instra_clone"><strong class="color-blue">InstaClone</strong></a></h4>
-                        <p>
-                            Laravel, Vue.js, PHP, JavaScript 
-                        </p>
-                        <p>
-                            A full-stack social media website with user authentication, media sharing. Almost similar to Instagram 
-                        </p>
-
-                        <hr/>
-
-                        <h4 ><a href="https://github.com/Rifat094/Friendschat"><strong class="color-blue">FriendsChat</strong></a></h4>
-                        <p>
-                            Android, Firebase
-                        </p>
-                        <p>
-                            Developed a real-time chat application with Firebase backend supporting multimedia file sharing. 
-                        </p>
-
-                        <hr/>
-
-                        <h4 ><a href="https://github.com/Rifat094/pwa_weatherapp"><strong class="color-blue">Weather Update</strong></a></h4>
-                        <p>
-                            JavaScript 
-                        </p>
-                        <p>
-                            A simple <b>Android</b> application that gives information about weather with the help of JSON Parsing.
-                        </p>
-
-
-                        <h4 ><a href="https://github.com/Rifat094/graphic_design_project"><strong class="color-blue">3D Helicopter Model</strong></a></h4>
-                        <p>
-                            C++, OpenGL 
-                        </p>
-                        <p>
-                            Designed and rendered a 3D helicopter model with realistic animations.
-                        </p>
-
-                    </div>  
-                </div> 
-            </div>
+          <article class="category-card">
+            <div class="category-art"><i class="fa-solid fa-house"></i></div>
+            <h3>Home & Lifestyle</h3>
+            <p>Simple picks designed to complement modern everyday living.</p>
+            <a href="#contact">Explore <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <div class="trust">
+      <div class="container trust-grid">
+        <div class="trust-item"><strong>01</strong><span>Curated selection</span></div>
+        <div class="trust-item"><strong>02</strong><span>Customer-first approach</span></div>
+        <div class="trust-item"><strong>03</strong><span>Simple shopping journey</span></div>
+        <div class="trust-item"><strong>04</strong><span>Built for growth</span></div>
+      </div>
     </div>
-    <!--END PROJECT SECTION -->
 
-
-
-	
-    <!--AWARDS & OTHERS SECTION -->
-    <div id="award-section" >
-        <div class="container" >
-            <div class="row main-top-margin text-center" data-scrollreveal="enter top and move 100px, wait 0.3s">
-                <div class="col-md-8 col-md-offset-2 ">
-                    <h1>Skills & OTHERS</h1>
-                    
-                </div>
-            </div>
-             <!-- ./ Main Heading-->
-            <hr />
-
-           <div class="row main-low-margin" >
-                <div class="col-md-10  col-md-offset-1 ">
-
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.2s">
-                        <h2 >  <strong class="color-blue">Skills Summary</Summary></strong></h2>
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <p>
-                        <h4 >  <strong class="color-blue">Programming Languages</strong></h4>
-                        <i class="fa-solid fa-arrow-right-long"></i> Python, C/C++, JavaScript
-                        </p>
-
-                        <p>
-                        <h4 >  <strong class="color-blue">DL/ML Libraries</strong></h4>
-                        <i class="fa-solid fa-arrow-right-long"></i> Scikit-learn, NLTK, Pytorch, OpenCV, TensorFlow, Keras
-                        </p>
-
-                        <p>
-                        <h4 >  <strong class="color-blue">DBMS</strong></h4>
-                        <i class="fa-solid fa-arrow-right-long"></i> PostgreSQL, MySQL
-                        </p>
-
-                        <p>
-                        <h4 >  <strong class="color-blue">Web Programming</strong></h4>
-                        <i class="fa-solid fa-arrow-right-long"></i> Laravel 
-                        </p>
-
-                        <p>
-                        <h4 >  <strong class="color-blue">Networking</strong></h4>
-                        <i class="fa-solid fa-arrow-right-long"></i> Cisco Packet Tracer 
-                        </p>
-
-                        <p>
-                        <h4 >  <strong class="color-blue">Other</strong></h4>
-                        <i class="fa-solid fa-arrow-right-long"></i> GIT, Firebase, Adobe Photoshop, Adobe Illustrator, LaTeX 
-                        </p>
-
-                    </div>  
-                </div>   
-            </div>
-
-
-            <!-- ./ Row Content-->
-
-            <hr />
-
-
-            <div class="row main-low-margin" >
-                <div class="col-md-10  col-md-offset-1 ">
-
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.2s">
-                        <h2 >  <strong class="color-blue">Cocurricular<br/>Activities</strong></h2>
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-
-
-                        <p>
-                        <h4 >  <strong class="color-blue">SGIPC (Special Group Interested in Programming Contest)</strong></h4>
-                        <i class="fa fa-check"></i> Member (2016-2020)
-                        </p>
-
-                        <p>
-                        <h4 >  <strong class="color-blue">HACK (Hardware Acceleration Club of KUET)</strong></h4>
-                        <i class="fa fa-check"></i> Organizing Secretary (2017-2020)
-                        </p>
-
-                        <p>
-                        <h4 >  <strong class="color-blue">Dream (Voluntary Blood Donation Society of KUET)</strong></h4>
-                        <i class="fa fa-check"></i> Member (2016-2020) 
-                        </p>
-                    </div>  
-                </div>   
-            </div>
-            <!-- ./ Row Content-->
-
-            <hr />
-
-            
-            <div class="row main-low-margin bottam-pad" >
-
-                <div class="col-md-10  col-md-offset-1 ">
-
-                    <div class="col-md-4 col-sm-4" data-scrollreveal="enter left and move 100px, wait 0.2s">
-                        <h2 >  <strong class="color-blue">Online<br/>Activities</strong></h2>
-                    </div>
-
-                    <div class="col-md-8 text-justify" data-scrollreveal="enter right and move 100px, wait 0.4s">
-                        <p>
-                        <h4 >  <strong class="color-blue">kaggle</strong></h4>
-                        <i class="fa fa-check"></i> User Name: <a href="https://www.kaggle.com/refat094">refat094</a>
-                        </p>
-
-                        <p>
-                        <h4 >  <strong class="color-blue">LeetCode</strong></h4>
-                        <i class="fa fa-check"></i> User Name: <a href="https://leetcode.com/u/Rifat094/">Rifat094</a>
-                        </p>
-
-                        <p>
-                        <h4 >  <strong class="color-blue">HackerRank</strong></h4>
-                        <i class="fa fa-check"></i> User Name: <a href="https://www.hackerrank.com/profile/rifatahmed034">rifatahmed034</a>
-                        </p>
-
-                    </div>    
-                </div> 
-            </div>
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <div class="mini-logo">H</div>
+          <h3>Horizon Trio</h3>
+          <p>
+            A modern ecommerce brand with a simple idea: make discovering useful and interesting products feel effortless.
+          </p>
         </div>
+
+        <div class="about-copy">
+          <div class="eyebrow">About Horizon Trio</div>
+          <h2>More than a storefront — a shopping experience.</h2>
+          <p>
+            Horizon Trio is designed around clarity, convenience, and product discovery. The brand combines a clean digital experience with a curated approach to ecommerce.
+          </p>
+
+          <div class="feature-list">
+            <div class="feature">
+              <i class="fa-solid fa-check"></i>
+              <div>
+                <strong>Thoughtful product selection</strong>
+                <span>Focus on practical, appealing, and relevant products.</span>
+              </div>
+            </div>
+            <div class="feature">
+              <i class="fa-solid fa-check"></i>
+              <div>
+                <strong>Simple customer experience</strong>
+                <span>Clear navigation and a straightforward path from browsing to buying.</span>
+              </div>
+            </div>
+            <div class="feature">
+              <i class="fa-solid fa-check"></i>
+              <div>
+                <strong>Long-term brand vision</strong>
+                <span>Built to grow into a recognizable and trusted ecommerce destination.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Why Horizon Trio</div>
+          <h2>Built around what matters to shoppers.</h2>
+          <p>Use these cards as your core brand promises, or replace them with your actual business policies and services.</p>
+        </div>
+
+        <div class="why-grid">
+          <article class="why-card">
+            <i class="fa-solid fa-compass"></i>
+            <h3>Curated discovery</h3>
+            <p>A focused catalog makes it easier to discover products without unnecessary noise.</p>
+          </article>
+
+          <article class="why-card">
+            <i class="fa-solid fa-shield-heart"></i>
+            <h3>Customer focused</h3>
+            <p>A friendly, transparent experience across product discovery, shopping, and support.</p>
+          </article>
+
+          <article class="why-card">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <h3>Always evolving</h3>
+            <p>A modern ecommerce approach that can expand naturally as the business grows.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Ready to explore Horizon Trio?</h2>
+            <p>Turn this space into your store link, catalog, marketplace profile, or product collection page.</p>
+          </div>
+          <a class="btn btn-secondary" href="#contact">Get in Touch <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2>Let’s build the next horizon.</h2>
+          <p>
+            Replace the placeholder contact details below with your actual business email, phone number, social profiles, and store URL before publishing.
+          </p>
+          <div class="contact-links">
+            <div class="contact-link"><i class="fa-regular fa-envelope"></i> your-business-email@example.com</div>
+            <div class="contact-link"><i class="fa-solid fa-globe"></i> www.your-store-domain.com</div>
+            <div class="contact-link"><i class="fa-solid fa-location-dot"></i> Business location / service area</div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="margin:0 0 13px;font-family:'Manrope',sans-serif;">Horizon Trio</h3>
+          <p style="margin-top:0;">
+            Ecommerce. Discovery. Convenience.
+          </p>
+          <div class="socials" aria-label="Social media links">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-box">
+        <div>© <span id="year"></span> Horizon Trio. All Rights Reserved.</div>
+        <div>Privacy Policy &nbsp; · &nbsp; Terms of Service</div>
+      </div>
     </div>
-    <!--END AWARDS & OTHERS SECTION -->
+  </footer>
 
+  <script>
+    const toggle = document.querySelector('.mobile-toggle');
+    const nav = document.querySelector('.nav-links');
 
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.innerHTML = open
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
 
-    <!--FOOTER SECTION -->
-<footer class="footer">
-  <div class="footer-left">
-    <p>© Reffat Ahmed 2025 | All Rights Reserved.</p>
-  </div>
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
 
-  <div class="footer-right">
-    <div class="social-icons">
-      <a href="https://github.com/Rifat094"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/reffat-ahmed-961a85148/"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://scholar.google.com/citations?user=yeNb3Q8AAAAJ&hl=en"><i class="fa-brands fa-google-scholar"></i></a>
-      <a href="https://www.kaggle.com/refat094" target="_blank"><i class="fa-brands fa-kaggle"></i></a>
-	  <a href="#"><i class="fa-brands fa-facebook"></i></a>
-	  <a href="#"><i class="fa-brands fa-youtube"></i></a>
-	  <a href="#"><i class="fa-brands fa-x-twitter"></i></i></a>
-	
-
-	</div>
-	  <br>
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-    </div>
-  </div>
-</footer>  
-    <!--END FOOTER SECTION --> 
-
-	
-    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-    <!-- CORE JQUERY LIBRARY -->
-    <script src="assets/js/jquery.js"></script>
-    <!-- CORE BOOTSTRAP LIBRARY -->
-    <script src="assets/js/bootstrap.min.js"></script>
-     <!-- SCROLL REVEL LIBRARY FOR SCROLLING ANIMATIONS-->
-    <script src="assets/js/scrollReveal.js"></script>
-       <!-- CUSTOM SCRIPT-->
-    <script src="assets/js/custom.js"></script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
