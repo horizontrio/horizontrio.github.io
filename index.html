@@ -356,6 +356,29 @@
     @media(max-width:420px){
       .nav-actions .tool-btn:nth-child(2){display:none}.category-grid{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr}.product-image{height:220px}.subscribe{flex-direction:column}.subscribe input,.subscribe button{width:100%}.subscribe button{height:44px}
     }
+    
+  @media (max-width: 900px) {
+     .account-wrap { position: relative; }
+
+    .account-wrap .account-menu {
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    width: 190px;
+    min-width: 0;
+    margin: 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    box-shadow: var(--shadow);
+    padding: 8px;
+    z-index: 1200;
+  }
+}
+
+    
   </style>
 </head>
 
