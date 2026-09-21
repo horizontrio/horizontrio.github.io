@@ -224,9 +224,10 @@
     .product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
     .product-image{height:215px;display:grid;place-items:center;position:relative;overflow:hidden}
     .product-image:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 25%,rgba(255,255,255,.75),transparent 28%),linear-gradient(135deg,#fff2e8,#ffe0cc)}
+    .product-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;display:block}
     .product-icon{position:relative;z-index:1;width:105px;height:105px;border-radius:31px;display:grid;place-items:center;color:#fff;font-size:42px;background:linear-gradient(145deg,var(--orange-2),var(--deep-orange));box-shadow:0 18px 33px rgba(217,75,11,.18)}
-    .badge{position:absolute;left:12px;top:12px;z-index:2;padding:5px 8px;border-radius:999px;background:#191919;color:#fff;font-size:9px;font-weight:800;text-transform:uppercase}
-    .wishlist{position:absolute;right:10px;top:10px;z-index:2;border:1px solid #eee;background:#fff;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#6c6c6c}
+    .badge{position:absolute;left:12px;top:12px;z-index:3;padding:5px 8px;border-radius:999px;background:#191919;color:#fff;font-size:9px;font-weight:800;text-transform:uppercase}
+    .wishlist{position:absolute;right:10px;top:10px;z-index:3;border:1px solid #eee;background:#fff;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#6c6c6c}
     .wishlist.active{color:var(--deep-orange)}
     .product-info{padding:16px}
     .product-category{font-size:10px;color:#9b9b9b;text-transform:uppercase;font-weight:800;letter-spacing:.7px}
@@ -271,7 +272,8 @@
     .cart-items{flex:1;overflow:auto;padding:15px 20px}
     .empty-cart{text-align:center;color:#929292;padding:65px 25px}
     .cart-item{display:grid;grid-template-columns:58px 1fr auto;gap:11px;align-items:center;padding:13px 0;border-bottom:1px solid #f0ece9}
-    .cart-thumb{width:58px;height:58px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,var(--orange-2),var(--deep-orange));font-size:20px}
+    .cart-thumb{width:58px;height:58px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,var(--orange-2),var(--deep-orange));font-size:20px;position:relative;overflow:hidden}
+    .cart-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
     .cart-item h4{margin:0;font-size:13px}.cart-item p{margin:3px 0;color:#888;font-size:11px}.remove{border:0;background:none;color:#aaa;font-size:12px}
     .qty{display:flex;align-items:center;gap:7px;margin-top:5px}.qty button{width:24px;height:24px;border:1px solid var(--line);background:#fff;border-radius:6px}.qty span{font-size:11px;min-width:14px;text-align:center}
     .drawer-foot{border-top:1px solid var(--line);padding:18px 20px}.subtotal{display:flex;justify-content:space-between;font-weight:800;margin-bottom:13px}.checkout{width:100%;border:0;border-radius:11px;height:47px;background:linear-gradient(135deg,var(--orange),var(--deep-orange));color:#fff;font-weight:800}
@@ -288,6 +290,7 @@
     .pp-media{position:sticky;top:26px}
     .pp-icon-wrap{aspect-ratio:1;border-radius:26px;position:relative;overflow:hidden;display:grid;place-items:center}
     .pp-icon-wrap:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 25%,rgba(255,255,255,.75),transparent 28%),linear-gradient(135deg,#fff2e8,#ffe0cc)}
+    .pp-icon-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;display:block}
     .pp-icon-wrap i{position:relative;z-index:1;font-size:110px;color:#fff;width:230px;height:230px;border-radius:48px;display:grid;place-items:center;background:linear-gradient(145deg,var(--orange-2),var(--deep-orange));box-shadow:0 25px 50px rgba(217,75,11,.2)}
     .pp-info h1{font-size:clamp(26px,3vw,36px);margin:6px 0 10px;letter-spacing:-1px}
     .pp-desc{color:var(--muted);margin:18px 0 22px;max-width:480px}
@@ -460,7 +463,7 @@
             <div class="container hero-content">
               <div class="hero-copy">
                 <div class="eyebrow"><i class="fa-solid fa-fire"></i> Trending Now</div>
-                <h1>What’s trending on <span>your horizon?</span></h1>
+                <h1>What's trending on <span>your horizon?</span></h1>
                 <p>Bring popular products and seasonal discoveries to the front of your storefront.</p>
                 <div class="hero-buttons">
                   <a class="btn btn-primary" href="#products" data-filter="trending">Shop Trending <i class="fa-solid fa-arrow-right"></i></a>
@@ -568,6 +571,7 @@
         <div class="product-grid" id="products">
           <article class="product" data-category="everyday" data-name="Magnetic Desk Organizer" data-price="24.99">
             <div class="product-image">
+              <img class="product-img" src="assets/img/magnetic-desk-organizer.jpg" alt="Magnetic Desk Organizer" loading="lazy" onerror="this.style.display='none'">
               <span class="badge">Best Seller</span>
               <button class="wishlist" aria-label="Add Magnetic Desk Organizer to wishlist"><i class="fa-regular fa-heart"></i></button>
               <div class="product-icon"><i class="fa-solid fa-box"></i></div>
@@ -582,6 +586,7 @@
 
           <article class="product" data-category="home" data-name="Minimal Table Lamp" data-price="39.99">
             <div class="product-image">
+              <img class="product-img" src="assets/img/minimal-table-lamp.jpg" alt="Minimal Table Lamp" loading="lazy" onerror="this.style.display='none'">
               <span class="badge">New</span>
               <button class="wishlist" aria-label="Add Minimal Table Lamp to wishlist"><i class="fa-regular fa-heart"></i></button>
               <div class="product-icon"><i class="fa-solid fa-lightbulb"></i></div>
@@ -596,6 +601,7 @@
 
           <article class="product" data-category="trending" data-name="Smart Travel Bottle" data-price="18.50">
             <div class="product-image">
+              <img class="product-img" src="assets/img/smart-travel-bottle.jpg" alt="Smart Travel Bottle" loading="lazy" onerror="this.style.display='none'">
               <span class="badge">Trending</span>
               <button class="wishlist" aria-label="Add Smart Travel Bottle to wishlist"><i class="fa-regular fa-heart"></i></button>
               <div class="product-icon"><i class="fa-solid fa-bottle-water"></i></div>
@@ -610,6 +616,7 @@
 
           <article class="product" data-category="everyday" data-name="Portable Tech Stand" data-price="27.00">
             <div class="product-image">
+              <img class="product-img" src="assets/img/portable-tech-stand.jpg" alt="Portable Tech Stand" loading="lazy" onerror="this.style.display='none'">
               <span class="badge">Popular</span>
               <button class="wishlist" aria-label="Add Portable Tech Stand to wishlist"><i class="fa-regular fa-heart"></i></button>
               <div class="product-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
@@ -624,6 +631,7 @@
 
           <article class="product" data-category="home" data-name="Aroma Diffuser" data-price="32.99">
             <div class="product-image">
+              <img class="product-img" src="assets/img/aroma-diffuser.jpg" alt="Aroma Diffuser" loading="lazy" onerror="this.style.display='none'">
               <button class="wishlist" aria-label="Add Aroma Diffuser to wishlist"><i class="fa-regular fa-heart"></i></button>
               <div class="product-icon"><i class="fa-solid fa-wind"></i></div>
             </div>
@@ -637,6 +645,7 @@
 
           <article class="product" data-category="trending" data-name="Wireless Mini Speaker" data-price="44.00">
             <div class="product-image">
+              <img class="product-img" src="assets/img/wireless-mini-speaker.jpg" alt="Wireless Mini Speaker" loading="lazy" onerror="this.style.display='none'">
               <span class="badge">Top Rated</span>
               <button class="wishlist" aria-label="Add Wireless Mini Speaker to wishlist"><i class="fa-regular fa-heart"></i></button>
               <div class="product-icon"><i class="fa-solid fa-volume-high"></i></div>
@@ -651,6 +660,7 @@
 
           <article class="product" data-category="everyday" data-name="Reusable Storage Set" data-price="21.75">
             <div class="product-image">
+              <img class="product-img" src="assets/img/reusable-storage-set.jpg" alt="Reusable Storage Set" loading="lazy" onerror="this.style.display='none'">
               <button class="wishlist" aria-label="Add Reusable Storage Set to wishlist"><i class="fa-regular fa-heart"></i></button>
               <div class="product-icon"><i class="fa-solid fa-box-open"></i></div>
             </div>
@@ -664,6 +674,7 @@
 
           <article class="product" data-category="home" data-name="Compact Reading Light" data-price="16.99">
             <div class="product-image">
+              <img class="product-img" src="assets/img/compact-reading-light.jpg" alt="Compact Reading Light" loading="lazy" onerror="this.style.display='none'">
               <span class="badge">Value Pick</span>
               <button class="wishlist" aria-label="Add Compact Reading Light to wishlist"><i class="fa-regular fa-heart"></i></button>
               <div class="product-icon"><i class="fa-solid fa-book-open"></i></div>
@@ -766,7 +777,10 @@
 
       <div class="pp-grid">
         <div class="pp-media">
-          <div class="pp-icon-wrap"><i id="ppIcon" class="fa-solid fa-box"></i></div>
+          <div class="pp-icon-wrap">
+            <img id="ppImg" alt="" loading="lazy">
+            <i id="ppIcon" class="fa-solid fa-box"></i>
+          </div>
         </div>
         <div class="pp-info">
           <div class="product-category" id="ppCategory"></div>
@@ -950,6 +964,12 @@
       document.getElementById('ppCompare').textContent=compareEl?compareEl.textContent:'';
       document.getElementById('ppDescription').textContent=productDescriptions[name]||'A Horizon Trio pick chosen for everyday quality and value.';
       document.getElementById('ppQtyVal').textContent='1';
+      const ppImg=document.getElementById('ppImg');
+      const sourceImg=node.querySelector('.product-img');
+      ppImg.style.display='';
+      ppImg.src=sourceImg?sourceImg.getAttribute('src'):`assets/img/${slugify(name)}.jpg`;
+      ppImg.alt=name;
+      ppImg.onerror=function(){ this.style.display='none'; };
       const wl=node.querySelector('.wishlist'), ppWl=document.getElementById('ppWishlist');
       ppWl.classList.toggle('active', wl.classList.contains('active'));
       ppWl.innerHTML=wl.classList.contains('active')?'<i class="fa-solid fa-heart"></i>':'<i class="fa-regular fa-heart"></i>';
@@ -986,8 +1006,9 @@
 
     function addToCart(node, qty=1){
       const existing=cart.find(i=>i.name===node.dataset.name);
+      const imgEl=node.querySelector('.product-img');
       if(existing) existing.qty+=qty;
-      else cart.push({name:node.dataset.name,price:+node.dataset.price,qty:qty,icon:node.querySelector('.product-icon i').className});
+      else cart.push({name:node.dataset.name,price:+node.dataset.price,qty:qty,icon:node.querySelector('.product-icon i').className,img:imgEl?imgEl.getAttribute('src'):null});
       renderCart(); showToast(`${node.dataset.name} added to cart`);
     }
 
@@ -1026,7 +1047,7 @@
       }
       items.innerHTML=cart.map((item,index)=>`
         <div class="cart-item">
-          <div class="cart-thumb"><i class="${item.icon}"></i></div>
+          <div class="cart-thumb">${item.img?`<img src="${item.img}" alt="${item.name}" onerror="this.remove()">`:''}<i class="${item.icon}"></i></div>
           <div>
             <h4>${item.name}</h4>
             <p>${money(item.price)} each</p>
