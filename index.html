@@ -279,6 +279,25 @@
     .drawer-foot{border-top:1px solid var(--line);padding:18px 20px}.subtotal{display:flex;justify-content:space-between;font-weight:800;margin-bottom:13px}.checkout{width:100%;border:0;border-radius:11px;height:47px;background:linear-gradient(135deg,var(--orange),var(--deep-orange));color:#fff;font-weight:800}
     .notice{font-size:10px;color:#919191;text-align:center;margin:9px 0 0}
 
+    .checkout-modal{position:fixed;inset:0;z-index:1150;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .22s ease}
+    .checkout-modal.open{opacity:1;pointer-events:auto}
+    .checkout-card{background:#fff;border-radius:20px;max-width:460px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 30px 80px rgba(0,0,0,.25);transform:translateY(14px);transition:transform .25s ease}
+    .checkout-modal.open .checkout-card{transform:translateY(0)}
+    .checkout-head{display:flex;justify-content:space-between;align-items:center;padding:19px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
+    .checkout-head h3{margin:0;font-size:18px}
+    .checkout-body{padding:6px 22px 0}
+    .checkout-body label{display:block;font-size:12px;font-weight:700;color:#444;margin:14px 0 6px}
+    .checkout-body input,.checkout-body textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;outline:0;font:inherit;color:var(--ink)}
+    .checkout-body input:focus,.checkout-body textarea:focus{border-color:#efbd9f;box-shadow:0 0 0 3px rgba(243,106,33,.08)}
+    .checkout-body textarea{resize:vertical;min-height:66px}
+    .field-error{color:#c0392b;font-size:11px;margin-top:4px;display:none}
+    .field-error.show{display:block}
+    .checkout-summary{background:#fffaf7;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:18px 0 4px;font-size:12px;color:#656565}
+    .checkout-summary .cs-row{display:flex;justify-content:space-between;gap:10px;margin:4px 0}
+    .checkout-summary .cs-total{font-weight:800;color:var(--ink);border-top:1px solid var(--line);margin-top:8px;padding-top:8px}
+    .checkout-foot{padding:16px 22px 22px}
+    .checkout-foot .checkout{margin-bottom:0}
+
     .toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,15px);opacity:0;pointer-events:none;z-index:1200;background:#191919;color:#fff;padding:11px 16px;border-radius:11px;font-size:12px;transition:.22s}
     .toast.show{opacity:1;transform:translate(-50%,0)}
         .product-page{position:fixed;inset:0;z-index:1050;background:#fff;overflow-y:auto;opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .25s ease,transform .25s ease}
@@ -768,8 +787,40 @@
   <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
     <div class="drawer-head"><h3>Your Cart</h3><button class="close-drawer" id="closeCart" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button></div>
     <div class="cart-items" id="cartItems"><div class="empty-cart"><i class="fa-solid fa-bag-shopping" style="font-size:31px;margin-bottom:12px"></i><div>Your cart is empty.</div><div style="font-size:11px;margin-top:4px">Add a product to get started.</div></div></div>
-    <div class="drawer-foot"><div class="subtotal"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div><button class="checkout" id="checkoutBtn">Proceed to Checkout</button><div class="notice">Demo storefront — connect this button to Shopify Checkout or your ecommerce backend.</div></div>
+    <div class="drawer-foot"><div class="subtotal"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div><button class="checkout" id="checkoutBtn">Proceed to Checkout</button><div class="notice">You'll enter your details, then we email your order to the store.</div></div>
   </aside>
+
+  <div class="checkout-modal" id="checkoutModal" aria-hidden="true">
+    <div class="checkout-card">
+      <div class="checkout-head">
+        <h3>Checkout details</h3>
+        <button class="close-drawer" id="closeCheckout" aria-label="Close checkout"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form class="checkout-body" id="checkoutForm" novalidate>
+        <label for="custName">Full name</label>
+        <input type="text" id="custName" name="custName" autocomplete="name" required>
+        <div class="field-error" id="errName">Please enter your name.</div>
+
+        <label for="custEmail">Email address</label>
+        <input type="email" id="custEmail" name="custEmail" autocomplete="email" placeholder="you@example.com" required>
+        <div class="field-error" id="errEmail">Please enter a valid email address.</div>
+
+        <label for="custPhone">Contact number</label>
+        <input type="tel" id="custPhone" name="custPhone" autocomplete="tel" placeholder="+1 555 123 4567" required>
+        <div class="field-error" id="errPhone">Please enter your contact number.</div>
+
+        <label for="custAddress">Shipping address</label>
+        <textarea id="custAddress" name="custAddress" autocomplete="street-address" placeholder="Street, city, state, ZIP, country" required></textarea>
+        <div class="field-error" id="errAddress">Please enter your shipping address.</div>
+
+        <div class="checkout-summary" id="checkoutSummary"></div>
+      </form>
+      <div class="checkout-foot">
+        <button class="checkout" id="placeOrderBtn" form="checkoutForm" type="submit">Place Order</button>
+        <div class="notice">This opens your email app with the order details ready to send.</div>
+      </div>
+    </div>
+  </div>
 
     <div class="product-page" id="productPage" aria-hidden="true">
     <div class="product-page-inner">
@@ -1068,14 +1119,98 @@
       items.querySelectorAll('[data-remove]').forEach(btn=>btn.addEventListener('click',()=>{cart.splice(+btn.dataset.remove,1);renderCart();}));
     }
 
-    function openCart(){document.getElementById('cartDrawer').classList.add('open');document.getElementById('overlay').classList.add('show');document.body.style.overflow='hidden'}
-    function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('overlay').classList.remove('show');document.body.style.overflow=''}
+    // TODO: replace with the real address that should receive order notifications.
+    const STORE_EMAIL = 'abc@gmail.com';
+
+    function closeAllPanels(){
+      document.getElementById('cartDrawer').classList.remove('open');
+      const modal=document.getElementById('checkoutModal');
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      document.getElementById('overlay').classList.remove('show');
+      document.body.style.overflow='';
+    }
+    function openCart(){
+      closeAllPanels();
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('overlay').classList.add('show');
+      document.body.style.overflow='hidden';
+    }
     document.getElementById('cartButton').addEventListener('click',openCart);
-    document.getElementById('closeCart').addEventListener('click',closeCart);
-    document.getElementById('overlay').addEventListener('click',closeCart);
+    document.getElementById('closeCart').addEventListener('click',closeAllPanels);
+    document.getElementById('overlay').addEventListener('click',closeAllPanels);
+    document.getElementById('closeCheckout').addEventListener('click',closeAllPanels);
+
+    function renderCheckoutSummary(){
+      const box=document.getElementById('checkoutSummary');
+      if(!cart.length){ box.innerHTML=''; return; }
+      const rows=cart.map(i=>`<div class="cs-row"><span>${i.name} × ${i.qty}</span><span>${money(i.price*i.qty)}</span></div>`).join('');
+      const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+      box.innerHTML=rows+`<div class="cs-row cs-total"><span>Total</span><span>${money(total)}</span></div>`;
+    }
+
     document.getElementById('checkoutBtn').addEventListener('click',()=>{
       if(!cart.length){showToast('Your cart is empty');return;}
-      showToast('Connect this button to Shopify Checkout');
+      document.getElementById('cartDrawer').classList.remove('open');
+      renderCheckoutSummary();
+      const modal=document.getElementById('checkoutModal');
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.getElementById('overlay').classList.add('show');
+      document.body.style.overflow='hidden';
+    });
+
+    function validateCheckoutForm(){
+      let valid=true;
+      const fields=[
+        {id:'custName',err:'errName',test:v=>v.trim().length>0},
+        {id:'custEmail',err:'errEmail',test:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())},
+        {id:'custPhone',err:'errPhone',test:v=>v.trim().length>=6},
+        {id:'custAddress',err:'errAddress',test:v=>v.trim().length>0}
+      ];
+      fields.forEach(f=>{
+        const el=document.getElementById(f.id), errEl=document.getElementById(f.err);
+        const ok=f.test(el.value);
+        errEl.classList.toggle('show', !ok);
+        el.style.borderColor = ok ? '' : '#c0392b';
+        if(!ok) valid=false;
+      });
+      return valid;
+    }
+
+    document.getElementById('checkoutForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      if(!cart.length){ showToast('Your cart is empty'); return; }
+      if(!validateCheckoutForm()) return;
+
+      const name=document.getElementById('custName').value.trim();
+      const email=document.getElementById('custEmail').value.trim();
+      const phone=document.getElementById('custPhone').value.trim();
+      const address=document.getElementById('custAddress').value.trim();
+      const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+
+      const bodyLines=[
+        'New checkout from Horizon Trio',
+        '',
+        `Customer name: ${name}`,
+        `Email: ${email}`,
+        `Phone: ${phone}`,
+        `Shipping address: ${address}`,
+        '',
+        'Order items:',
+        ...cart.map(i=>`- ${i.name}  x${i.qty}  ${money(i.price*i.qty)}`),
+        '',
+        `Order total: ${money(total)}`
+      ];
+      const subject=encodeURIComponent(`New Horizon Trio order from ${name}`);
+      const body=encodeURIComponent(bodyLines.join('\n'));
+      window.location.href=`mailto:${STORE_EMAIL}?subject=${subject}&body=${body}`;
+
+      showToast('Opening your email app to send the order…');
+      closeAllPanels();
+      document.getElementById('checkoutForm').reset();
+      cart=[];
+      renderCart();
     });
 
     document.getElementById('currency').addEventListener('change',()=>{
